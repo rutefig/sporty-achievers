@@ -8,7 +8,7 @@ contract ProofOfAchievement is ERC721, Ownable {
     uint256 public tokenCounter;
     mapping(uint256 => string) private _tokenURIs;
 
-    constructor() ERC721("SportsAchievement", "SPTA") {
+    constructor() ERC721("ProofOfAchievement", "POACH") {
         tokenCounter = 0;
     }
 
