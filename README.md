@@ -21,7 +21,9 @@ Deliverables:
 # 🤖 Tech Stack and Chain Info:
 
 #### Tech Stack: 
- - Vite.js / Typescript
+ - Next.js / Typescript
+ - Celo
+ - Sepolia
  - Solidity
  - Chakra UI
  - Hyperlane
@@ -71,21 +73,12 @@ git --version
 ```
 > If any don't return back the version info then you must install those to ensure your machine meets the prerequisites.
 
-#### Fork and clone this project
-* First, fork this project by clicking the `Fork` button in the upper right-hand corner of the repo page.
-![Figure 2](./images/fork.png)
-* Second, open your terminal and run the following command with your github username.
-  
-```bash
-git clone https://github.com/<YOUR-USERNAME>/hello-world-polygon-and-thegraph
-```
 #### Install all project dependencies
 
 * Inside the root directory run `yarn install`
   
 yarn install
 ```
----
 
 # 📱 Run the App
 
