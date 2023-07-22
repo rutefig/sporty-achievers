@@ -21,7 +21,7 @@ Deliverables:
 # 🤖 Tech Stack and Chain Info:
 
 #### Tech Stack: 
- - Netx.js / Typescript
+ - Next.js / Typescript
  - Celo
  - Sepolia
  - Solidity
@@ -79,7 +79,6 @@ git --version
   
 yarn install
 ```
-
 
 # 📱 Run the App
 
