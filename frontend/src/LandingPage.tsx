@@ -17,9 +17,11 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
+  Flex,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react-use-disclosure";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import logo from "../public/logo.png";
 
 interface CardProps {
   imageUrl: string;
@@ -101,6 +103,7 @@ const SearchBar: React.FC = () => {
 
 export const LandingPage: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   const image1 =
     "https://images.unsplash.com/photo-1488474739786-757973c2dff6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80";
 
@@ -113,56 +116,53 @@ export const LandingPage: React.FC = () => {
     <Box>
       <Box w="100%">
         <VStack align="stretch" mb={4}>
-          <Box mt={20}>
+          <Flex mt={3} align="center">
+            <Image src={logo} boxSize="150px" />
             <Heading
-              as="h2"
-              size="2xl"
+              as="h1"
+              size="4xl"
               noOfLines={1}
-              position="absolute"
-              mr={10}
-              top={1}
-              mt={7}
-              mb={3}
+              ml={3} // You can adjust this value to add more or less space after the image
               color="#323232"
             >
               SportyAchiever
             </Heading>
-            <Box mb={4}>
-              <Button
-                colorScheme="teal"
-                mr={4}
-                mt={10}
-                position="absolute"
-                top={2}
-                right={2}
-                onClick={onOpen}
-              >
-                Create Profile
-              </Button>
+          </Flex>
 
-              <Link to="/profile">Profile</Link>
-
-              <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                  <ModalHeader>Create Profile</ModalHeader>
-                  <ModalBody>
-                    <Input placeholder="Username" mb={3}></Input>
-                    <Input placeholder="Sport" mb={3}></Input>
-                    <Input placeholder="Description"></Input>
-                  </ModalBody>
-                  <ModalCloseButton />
-                  <ModalFooter>
-                    <Button colorScheme="teal" mr={3} onClick={onClose}>
-                      Create
-                    </Button>
-                    <Button variant="ghost" onClick={onClose}>
-                      Cancel
-                    </Button>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
-            </Box>
+          <Box mb={4}>
+            <Button
+              colorScheme="teal"
+              mr={4}
+              mt={10}
+              position="absolute"
+              top={2}
+              right={2}
+              onClick={onOpen}
+            >
+              Create Profile
+            </Button>
+            <Link to="/profile">Profile</Link>
+            <Modal isOpen={isOpen} onClose={onClose}>
+              §
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>Create Profile</ModalHeader>
+                <ModalBody>
+                  <Input placeholder="Username" mb={3}></Input>
+                  <Input placeholder="Sport" mb={3}></Input>
+                  <Input placeholder="Description"></Input>
+                </ModalBody>
+                <ModalCloseButton />
+                <ModalFooter>
+                  <Button colorScheme="teal" mr={3} onClick={onClose}>
+                    <Link to="/profile">Create</Link>
+                  </Button>
+                  <Button variant="ghost" onClick={onClose}>
+                    Cancel
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
           </Box>
         </VStack>
       </Box>
@@ -170,7 +170,7 @@ export const LandingPage: React.FC = () => {
       <SearchBar />
 
       <SimpleGrid columns={3} spacing={10}>
-        <Card imageUrl={image1} title="Emily Foster" />
+        <Card imageUrl={image1} title="Emily Foster"></Card>
         <Card imageUrl={image2} title="Ryan Andeson" />
         <Card imageUrl={image3} title="Mickael Davis" />
         <Card imageUrl={image2} title="Sophia Kim" />
