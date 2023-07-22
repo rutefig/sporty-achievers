@@ -1,46 +1,82 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: GPL-3.0
+
 pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract ProofOfAchievement is ERC721, Ownable {
-    uint256 public tokenCounter;
-    mapping(uint256 => string) private _tokenURIs;
+interface IMailbox {
+    function localDomain() external view returns (uint32);
 
-    constructor() ERC721("ProofOfAchievement", "POACH") {
-        tokenCounter = 0;
+    function dispatch(
+        uint32 _destinationDomain,
+        bytes32 _recipientAddress,
+        bytes calldata _messageBody
+    ) external returns (bytes32);
+
+    function process(bytes calldata _metadata, bytes calldata _message)
+        external;
+
+    function count() external view returns (uint32);
+
+    function root() external view returns (bytes32);
+
+    function latestCheckpoint() external view returns (bytes32, uint32);
+}
+
+contract ProofOfAchievement is ERC721 {
+
+    uint private mintCost;
+    uint public tokenCount;
+    uint public maxSupply;
+    address public owner;
+    IMailbox mailbox;
+
+    event Executed(address indexed _from, bytes _value);
+
+    constructor(address _mailbox, uint _mintCost) ERC721("ProofOfAchievement","POACH") {
+        tokenCount = 0;
+        maxSupply = 9000;
+        owner = msg.sender;
+        mintCost = _mintCost;
+        mailbox = IMailbox(_mailbox);
     }
 
-    function mintAchievement(
-        address athlete,
-        string memory _tokenURI
-    ) public onlyOwner {
-        _safeMint(athlete, tokenCounter);
-        _setTokenURI(tokenCounter, _tokenURI);
-        tokenCounter++;
+    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+        _requireMinted(tokenId);
+        return string(abi.encodePacked("ipfs://QmQFkLSQysj94s5GvTHPyzTxrawwtjgiiYS2TBLgrvw8CW/",Strings.toString(tokenId)));
     }
 
-    function _setTokenURI(
-        uint256 tokenId,
-        string memory _tokenURI
-    ) internal virtual {
-        require(
-            _exists(tokenId),
-            "ERC721Metadata: URI set of nonexistent token"
-        );
-        _tokenURIs[tokenId] = _tokenURI;
+    function increaseSupply(uint supply) public {
+        require(msg.sender == owner, "Only owner can increase supply!!");
+        maxSupply = supply;
     }
 
-    function tokenURI(
-        uint256 tokenId
-    ) public view virtual override returns (string memory) {
-        require(
-            _exists(tokenId),
-            "ERC721Metadata: URI query for nonexistent token"
-        );
+    // To receive the message from Hyperlane
+    function handle(
+        uint32,
+        bytes32,
+        bytes calldata payload
+    ) public {
+        
+        address msgSender;
 
-        string memory _tokenURI = _tokenURIs[tokenId];
-        return bytes(_tokenURI).length > 0 ? _tokenURI : "";
+        (msgSender) = abi.decode(payload,(address));
+
+        mintToken(msgSender);
+        
+        emit Executed(msg.sender, payload);
     }
+
+    function mintToken(address _msgSender) private {
+        tokenCount = tokenCount + 1;
+        require(tokenCount <= maxSupply, "Max Supply Is Reached!!");
+        super._mint(_msgSender,  tokenCount);
+    }
+
+    function initiateMint() public payable {
+        require(msg.value > mintCost, "Pay the mint cost!!");
+        mintToken(msg.sender);
+    }
+
 }
