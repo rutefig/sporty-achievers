@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.9;
 
@@ -34,11 +34,10 @@ contract ProofOfAchievement is ERC721 {
 
     event Executed(address indexed _from, bytes _value);
 
-    constructor(address _mailbox, uint _mintCost) ERC721("ProofOfAchievement","POACH") {
+    constructor(address _mailbox) ERC721("ProofOfAchievement","POACH") {
         tokenCount = 0;
         maxSupply = 9000;
         owner = msg.sender;
-        mintCost = _mintCost;
         mailbox = IMailbox(_mailbox);
     }
 
