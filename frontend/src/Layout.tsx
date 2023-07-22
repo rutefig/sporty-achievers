@@ -144,7 +144,18 @@ export function Layout() {
           {/* <h3>Smart account address:</h3>
           <p>{smartAccount.address}</p> */}
           {/* <Counter smartAccount={smartAccount} provider={provider} /> */}
-          <Button onClick={logout}>Logout</Button>
+          {/* <Button onClick={logout}>Logout</Button> */}
+          <Button
+          colorScheme="teal"
+          position={"absolute"}
+          right={8}
+          top={2}
+          onClick={logout}
+          mr={40}
+          mt={10}
+        >
+         {smartAccount.address.substring(0,4)}...{smartAccount.address.slice(-4)} Logout
+        </Button>          
         </div>
       )}
       <Outlet />

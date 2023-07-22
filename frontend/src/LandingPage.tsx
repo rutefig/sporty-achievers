@@ -19,6 +19,7 @@ import {
   ModalFooter,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react-use-disclosure";
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 
 interface CardProps {
   imageUrl: string;
@@ -138,6 +139,9 @@ export const LandingPage: React.FC = () => {
               >
                 Create Profile
               </Button>
+
+              <Link to="/profile">Profile</Link>
+
               <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
