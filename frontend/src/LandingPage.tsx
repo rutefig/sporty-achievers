@@ -10,7 +10,15 @@ import {
   Text,
   VStack,
   Input,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
 } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react-use-disclosure";
 
 interface CardProps {
   imageUrl: string;
@@ -19,7 +27,13 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ imageUrl, title }) => {
   return (
-    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+    <Box
+      maxW="sm"
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+      maxH={800}
+    >
       <Image src={imageUrl} alt={title} />
       <Box p="6">
         <Box alignItems="baseline">
@@ -31,7 +45,8 @@ const Card: React.FC<CardProps> = ({ imageUrl, title }) => {
 };
 
 const ImageBox: React.FC = () => {
-  const imageUrl = "https://source.unsplash.com/random";
+  const imageUrl =
+    "https://images.unsplash.com/photo-1599058917212-d750089bc07e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80";
 
   return (
     <Box position="relative" maxW="full" w="100%">
@@ -84,8 +99,15 @@ const SearchBar: React.FC = () => {
 };
 
 export const LandingPage: React.FC = () => {
-  const imageUrl = "https://source.unsplash.com/random";
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const image1 =
+    "https://images.unsplash.com/photo-1488474739786-757973c2dff6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80";
 
+  const image2 =
+    "https://images.unsplash.com/photo-1565992441121-4367c2967103?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=654&q=80";
+
+  const image3 =
+    "https://images.unsplash.com/photo-1622979857654-9363bb0a1243?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=748&q=80";
   return (
     <Box>
       <Box w="100%">
@@ -98,7 +120,8 @@ export const LandingPage: React.FC = () => {
               position="absolute"
               mr={10}
               top={1}
-              mt={10}
+              mt={7}
+              mb={3}
               color="#323232"
             >
               SportyAchiever
@@ -111,18 +134,30 @@ export const LandingPage: React.FC = () => {
                 position="absolute"
                 top={2}
                 right={2}
+                onClick={onOpen}
               >
                 Create Profile
               </Button>
-              <Button
-                colorScheme="teal"
-                position="absolute"
-                top={2}
-                mt={10}
-                right={180}
-              >
-                Sign in
-              </Button>
+              <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Create Profile</ModalHeader>
+                  <ModalBody>
+                    <Input placeholder="Username" mb={3}></Input>
+                    <Input placeholder="Sport" mb={3}></Input>
+                    <Input placeholder="Description"></Input>
+                  </ModalBody>
+                  <ModalCloseButton />
+                  <ModalFooter>
+                    <Button colorScheme="teal" mr={3} onClick={onClose}>
+                      Create
+                    </Button>
+                    <Button variant="ghost" onClick={onClose}>
+                      Cancel
+                    </Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
             </Box>
           </Box>
         </VStack>
@@ -131,12 +166,12 @@ export const LandingPage: React.FC = () => {
       <SearchBar />
 
       <SimpleGrid columns={3} spacing={10}>
-        <Card imageUrl={imageUrl} title="Emily Foster" />
-        <Card imageUrl={imageUrl} title="Ryan Andeson" />
-        <Card imageUrl={imageUrl} title="Mickael Davis" />
-        <Card imageUrl={imageUrl} title="Sophia Kim" />
-        <Card imageUrl={imageUrl} title="John key" />
-        <Card imageUrl={imageUrl} title="Alex Jones" />
+        <Card imageUrl={image1} title="Emily Foster" />
+        <Card imageUrl={image2} title="Ryan Andeson" />
+        <Card imageUrl={image3} title="Mickael Davis" />
+        <Card imageUrl={image2} title="Sophia Kim" />
+        <Card imageUrl={image1} title="John key" />
+        <Card imageUrl={image3} title="Alex Jones" />
       </SimpleGrid>
     </Box>
   );
