@@ -22,6 +22,8 @@ Deliverables:
 
 #### Tech Stack: 
  - Netx.js / Typescript
+ - Celo
+ - Sepolia
  - Solidity
  - Chakra UI
  - Hyperlane
