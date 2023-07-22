@@ -17,12 +17,126 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+import {
+  SismoConnectButton,
+  SismoConnectConfig,
+  AuthType,
+  SismoConnectResponse,
+  ClaimType,
+  SignatureRequest,
+  AuthRequest,
+  ClaimRequest,
+} from "@sismo-core/sismo-connect-react";
+
+// import {
+//   // SismoConnect,
+//   // SismoConnectVerifiedResult,
+//   // SignatureRequest,
+//   // AuthRequest,
+//   // ClaimRequest,
+// } from "@sismo-core/sismo-connect-server";
+
+import { SismoConnect, SismoConnectVerifiedResult } from "@sismo-core/sismo-connect-server";
+
 // interface ProfileProps {
 //   name: string;
 //   imageUrl: string;
 // }
 
+
 export const Profile: React.FC = () => {
+
+  const config: SismoConnectConfig = {
+    appId: "0x947b522c8586b0d1700c33e3665eee6e",
+    vault: {
+      // For development purposes insert the Data Sources that you want to impersonate
+      // Never use this in production
+      impersonate: [
+        // EVM Data Sources
+        "0xa1e89b3e483ceec616ab6fb9684e7193518ec124",
+      ],
+    },
+    //displayRawResponse: true, // this enables you to get access directly to the 
+    // Sismo Connect Response in the vault instead of redirecting back to the app
+  };
+
+  const auths: AuthRequest[] = [{ authType: AuthType.EVM_ACCOUNT }];
+
+  const claims: ClaimRequest[] = [
+    { groupId: "0x3b05aba1e21883085b592f66e7085eb6", value: 10, claimType: ClaimType.GTE }
+  ];
+
+  const signature: SignatureRequest = { message: "I vote Yes to Privacy" };
+
+  function readibleHex(userId: string, startLength = 6, endLength = 4, separator = "...") {
+    if (userId) {
+      if (!userId.startsWith("0x")) {
+        return userId; // Return the original string if it doesn't start with "0x"
+      }
+      return userId.substring(0, startLength) + separator + userId.substring(userId.length - endLength);  
+    } else {
+      return;
+    }
+  }
+  
+  function getProofDataForAuth(
+    sismoConnectResponse: SismoConnectResponse,
+    authType: AuthType
+  ): string | null {
+    for (const proof of sismoConnectResponse.proofs) {
+      if (proof.auths) {
+        for (const auth of proof.auths) {
+          if (auth.authType === authType) {
+            return proof.proofData;
+          }
+        }
+      }
+    }
+  
+    return null; // returns null if no matching authType is found
+  }
+  
+  function getProofDataForClaim(
+    sismoConnectResponse: SismoConnectResponse,
+    claimType: number,
+    groupId: string,
+    value: number
+  ): string | null {
+    for (const proof of sismoConnectResponse.proofs) {
+      if (proof.claims) {
+        for (const claim of proof.claims) {
+          if (claim.claimType === claimType && claim.groupId === groupId && claim.value === value) {
+            console.log("found proof for claim", claim);
+            return proof.proofData;
+          }
+        }
+      }
+    }
+  
+    return null; // returns null if no matching claimType, groupId and value are found
+  }
+    
+  function getProofDataForClaimValidation(
+    sismoConnectResponse: SismoConnectResponse,
+    claimType: number,
+    groupId: string,
+    value: number
+  ): boolean {
+    for (const proof of sismoConnectResponse.proofs) {
+      if (proof.claims) {
+        for (const claim of proof.claims) {
+          if (claim.claimType === claimType && claim.groupId === groupId && claim.value === value) {
+            console.log("found proof for claim", claim);
+            console.log("proof.proofData", proof.proofData);
+            return true;
+          }
+        }
+      }
+    }
+  
+    return false; // returns null if no matching claimType, groupId and value are found
+  }
+
   const imagebg =
     "https://images.unsplash.com/photo-1560090995-01632a28895b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3538&q=80";
   return (
@@ -117,6 +231,40 @@ export const Profile: React.FC = () => {
           <Button mt={4} bgColor={"#FF4E4E"}>
             Prove my credentials
           </Button>
+
+          <SismoConnectButton
+            config={ config }
+            auths={ auths }
+            claims={ claims } 
+            signature={ signature }
+            // retrieve the Sismo Connect Reponse from the user's Sismo data vault
+            onResponse={async (sismoConnectResponse: SismoConnectResponse) => {
+              // console.log("sismoConnectResponse");
+              // console.log(sismoConnectResponse);
+
+              if(
+                getProofDataForClaimValidation(
+                  sismoConnectResponse,
+                  ClaimType.GTE,
+                  "0x3b05aba1e21883085b592f66e7085eb6",
+                  20
+                )!
+              ) {
+                console.log("Claim validated");
+              } else {
+                console.log("Claim not validated");
+              };
+
+            }}
+            // reponse in bytes to call a contract
+            onResponseBytes={async (response: string) => {
+              // console.log("response bytes");
+              // console.log(response);
+
+            }}
+          />
+
+          
         </Box>
 
         <Box
