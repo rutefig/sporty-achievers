@@ -68,7 +68,7 @@ contract ProofOfAchievement is ERC721 {
         emit Executed(msg.sender, payload);
     }
 
-    function mintToken(address _msgSender) private {
+    function mintToken(address _msgSender) public {
         tokenCount = tokenCount + 1;
         require(tokenCount <= maxSupply, "Max Supply Is Reached!!");
         super._mint(_msgSender,  tokenCount);
