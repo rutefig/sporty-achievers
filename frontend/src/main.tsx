@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import App from "./App";
 import "./index.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import "@fontsource/raleway/400.css";
 import "@fontsource/open-sans/700.css";
-import { LandingPage } from "./LandingPage.js";
-import { Routes, Route, Outlet, Link, BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 const theme = extendTheme({
   styles: {

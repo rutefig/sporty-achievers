@@ -1,8 +1,7 @@
 import "./App.css";
 import { LandingPage } from "./LandingPage";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
-import  { Profile }  from "./Profile";
+import { Routes, Route } from "react-router-dom";
+import { Profile } from "./Profile";
 import { Layout } from "./Layout";
 
 function App() {
@@ -13,7 +12,7 @@ function App() {
           <Route index element={<LandingPage />} />
           <Route path="profile" element={<Profile />} />
         </Route>
-      </Routes>   
+      </Routes>
     </>
   );
 }
