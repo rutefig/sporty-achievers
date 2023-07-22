@@ -44,7 +44,7 @@ contract ProofOfAchievement is ERC721 {
 
     function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
         _requireMinted(tokenId);
-        return string(abi.encodePacked("ipfs://QmQFkLSQysj94s5GvTHPyzTxrawwtjgiiYS2TBLgrvw8CW/",Strings.toString(tokenId)));
+        return string(abi.encodePacked("https://bafybeigf7obi6qe53hbktdyfdcdtvyydz3i55mlvlk3ly6r5yvdj7pminu.ipfs.w3s.link/metadata.json"));
     }
 
     function increaseSupply(uint supply) public {
