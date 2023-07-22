@@ -14,6 +14,7 @@ import {
   SliderFilledTrack,
   SliderThumb,
   Button,
+  Text,
 } from "@chakra-ui/react";
 
 // interface ProfileProps {
@@ -99,18 +100,25 @@ export const Profile: React.FC = () => {
           <Heading mt={2} mb={4}>
             About Mickael
           </Heading>
-          Michael Phelps is a legendary American swimmer widely regarded as one
-          of the greatest athletes in Olympic history. Born on June 30, 1985, in
-          Baltimore, Maryland, he quickly rose to prominence as a swimming
-          prodigy from a young age. His unparalleled dedication to the sport,
-          combined with his exceptional talent and work ethic, set the stage for
-          an extraordinary career that has left an indelible mark on the world
-          of swimming. Phelps made his Olympic debut at the age of 15 during the
-          2000 Sydney Olympics, where he showed glimpses of his immense
-          potential. However, it was in the 2004 Athens Olympics that he truly
-          emerged as a force to be reckoned with, securing six gold medals and
-          two bronze medals, a remarkable achievement for any athlete.
+          <Text fontSize="md">
+            Michael Phelps is a legendary American swimmer widely regarded as
+            one of the greatest athletes in Olympic history. Born on June 30,
+            1985, in Baltimore, Maryland, he quickly rose to prominence as a
+            swimming prodigy from a young age. His unparalleled dedication to
+            the sport, combined with his exceptional talent and work ethic, set
+            the stage for an extraordinary career that has left an indelible
+            mark on the world of swimming. Phelps made his Olympic debut at the
+            age of 15 during the 2000 Sydney Olympics, where he showed glimpses
+            of his immense potential. However, it was in the 2004 Athens
+            Olympics that he truly emerged as a force to be reckoned with,
+            securing six gold medals and two bronze medals, a remarkable
+            achievement for any athlete.
+          </Text>
+          <Button mt={4} bgColor={"#FF4E4E"}>
+            Prove my credentials
+          </Button>
         </Box>
+
         <Box
           maxW="900px"
           maxH="400px"
@@ -167,9 +175,6 @@ export const Profile: React.FC = () => {
         >
           {/* Content of the second box */}
           <Heading size={"lg"}>Medals</Heading>
-        </Box>
-        <Box h="40px" bg="pink.100">
-          3
         </Box>
       </VStack>
     </>
