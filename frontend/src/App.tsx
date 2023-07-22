@@ -2,7 +2,7 @@ import "./App.css";
 import { LandingPage } from "./LandingPage";
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-import { Profile } from "./Profile";
+import  Profile  from "./Profile";
 
 function App() {
   return (
