@@ -14,8 +14,10 @@ interface IMailbox {
         bytes calldata _messageBody
     ) external returns (bytes32);
 
-    function process(bytes calldata _metadata, bytes calldata _message)
-        external;
+    function process(
+        bytes calldata _metadata,
+        bytes calldata _message
+    ) external;
 
     function count() external view returns (uint32);
 
@@ -25,7 +27,6 @@ interface IMailbox {
 }
 
 contract ProofOfAchievement is ERC721 {
-
     uint private mintCost;
     uint public tokenCount;
     uint public maxSupply;
@@ -34,16 +35,30 @@ contract ProofOfAchievement is ERC721 {
 
     event Executed(address indexed _from, bytes _value);
 
-    constructor(address _mailbox) ERC721("ProofOfAchievement","POACH") {
+    event MintedProofOfAchievement(
+        bytes32 competitionId,
+        string competitionName,
+        uint16 finalResult,
+        address receiverAddress
+    );
+
+    constructor(address _mailbox) ERC721("ProofOfAchievement", "POACH") {
         tokenCount = 0;
         maxSupply = 9000;
         owner = msg.sender;
         mailbox = IMailbox(_mailbox);
     }
 
-    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+    function tokenURI(
+        uint256 tokenId
+    ) public view virtual override returns (string memory) {
         _requireMinted(tokenId);
-        return string(abi.encodePacked("https://bafybeigf7obi6qe53hbktdyfdcdtvyydz3i55mlvlk3ly6r5yvdj7pminu.ipfs.w3s.link/metadata.json"));
+        return
+            string(
+                abi.encodePacked(
+                    "https://bafybeigf7obi6qe53hbktdyfdcdtvyydz3i55mlvlk3ly6r5yvdj7pminu.ipfs.w3s.link/metadata.json"
+                )
+            );
     }
 
     function increaseSupply(uint supply) public {
@@ -52,30 +67,34 @@ contract ProofOfAchievement is ERC721 {
     }
 
     // To receive the message from Hyperlane
-    function handle(
-        uint32,
-        bytes32,
-        bytes calldata payload
-    ) public {
-        
-        address msgSender;
+    function handle(uint32, bytes32, bytes memory _payload) public {
+        (
+            bytes32 competitionId,
+            string memory competitionName,
+            uint16 finalResult,
+            address receiverAddress
+        ) = abi.decode(_payload, (bytes32, string, uint16, address));
 
-        (msgSender) = abi.decode(payload,(address));
+        mintToken(receiverAddress);
 
-        mintToken(msgSender);
-        
-        emit Executed(msg.sender, payload);
+        emit MintedProofOfAchievement(
+            competitionId,
+            competitionName,
+            finalResult,
+            receiverAddress
+        );
+
+        emit Executed(msg.sender, _payload);
     }
 
     function mintToken(address _msgSender) public {
         tokenCount = tokenCount + 1;
         require(tokenCount <= maxSupply, "Max Supply Is Reached!!");
-        super._mint(_msgSender,  tokenCount);
+        super._mint(_msgSender, tokenCount);
     }
 
     function initiateMint() public payable {
         require(msg.value > mintCost, "Pay the mint cost!!");
         mintToken(msg.sender);
     }
-
 }

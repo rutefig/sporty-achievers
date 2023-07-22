@@ -4,7 +4,7 @@ import { task } from "hardhat/config";
 
 async function main() {
   // Select the Sepolia network for deploying AttesterResolver contract
-const proofOfAchievementAddress = "0xcf762DdF30C34f221E813A6ee217138057a3C8E2";
+const proofOfAchievementAddress = "0x72053C7b1f8a7c327719cD64c64cC043BBFFf21b";
 const sepoliaProvider = new ethers.JsonRpcProvider(`https://polygon-mumbai.g.alchemy.com/v2/${ALCHEMY_API_KEY_SEPOLIA}`);
 const sepoliaWallet = new ethers.Wallet(PRIVATE_KEY, sepoliaProvider);
 
