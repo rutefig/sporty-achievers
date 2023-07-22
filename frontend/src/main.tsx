@@ -13,7 +13,7 @@ const theme = extendTheme({
       body: {
         bg: "white",
         color: "black",
-        fonts: `'Open Sans', sans-serif`,
+        font: "open-sans",
       },
       fonts: {
         heading: `'Open Sans', sans-serif`,

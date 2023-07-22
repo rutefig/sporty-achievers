@@ -1,11 +1,12 @@
 import "./App.css";
-import { LandingPage } from "./LandingPage";
+import Profile from "./Profile";
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <LandingPage />
+      {/* <LandingPage /> */}
+      <Profile />
     </>
   );
 }
