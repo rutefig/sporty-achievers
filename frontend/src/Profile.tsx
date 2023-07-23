@@ -266,13 +266,8 @@ export const Profile: React.FC = () => {
               securing six gold medals and two bronze medals, a remarkable
               achievement for any athlete.
             </Text>
-            {/* <Button mt={4} bgColor={"#FF4E4E"}>
-            Prove my credentials
-          </Button> */}
-
-            <Nfts />
-
           </Box>
+
           <Box
             maxW="900px"
             maxH="400px"
@@ -418,11 +413,7 @@ export const Profile: React.FC = () => {
 
             </Center>
           </Box>
-
-
         </VStack>
-
-
 
         <Box
           maxW="900px"
@@ -502,6 +493,7 @@ export const Profile: React.FC = () => {
           {/* Content of the second box */}
           <Heading size={"lg"}>Medals</Heading>
           <h4>Achievements 🥇</h4>
+          <Nfts />
         </Box>
       </VStack>
     </>

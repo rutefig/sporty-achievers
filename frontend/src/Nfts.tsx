@@ -1,8 +1,10 @@
+import React from "react";
 import { init, useQuery } from "@airstack/airstack-react";
 
 init("ef3d1cdeafb642d3a8d6a44664ce566c");
 
-export const Nfts = () => {
+//export const Nfts: React.FC = () => {
+ export const Nfts = () => {
 
 
     const NftQuery = `{
