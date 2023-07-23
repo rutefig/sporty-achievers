@@ -1,6 +1,7 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
-import { ALCHEMY_API_KEY_SEPOLIA, ALCHEMY_API_KEY_MUMBAI, PRIVATE_KEY } from "./scripts/constants";
+import "@nomicfoundation/hardhat-verify";
+import { ALCHEMY_API_KEY_SEPOLIA, ALCHEMY_API_KEY_MUMBAI, PRIVATE_KEY, ETHERSCAN_API_KEY } from "./scripts/constants";
 
 const config: HardhatUserConfig = {
   solidity: "0.8.19",
@@ -15,6 +16,12 @@ const config: HardhatUserConfig = {
       accounts: [PRIVATE_KEY!],
     },
   },
+
+  etherscan: {
+    // Your API key for Etherscan
+    // Obtain one at https://etherscan.io/
+    apiKey: ETHERSCAN_API_KEY,
+  }
 };
 
 export default config;
