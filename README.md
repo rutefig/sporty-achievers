@@ -76,6 +76,6 @@ yarn install
 ```bash
 yarn dev
 ```
-* Open http://http://127.0.0.1:5173/ --host
+* Open http://localhost:5173/ --host
 
 ---
