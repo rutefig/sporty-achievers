@@ -6,6 +6,7 @@ import {
   Heading,
   Stack,
   VStack,
+  HStack,
   Badge,
   Wrap,
   WrapItem,
@@ -23,6 +24,7 @@ import {
   ModalBody,
   ModalFooter,
   Input,
+  Center,
 } from "@chakra-ui/react";
 
 import {
@@ -229,69 +231,198 @@ export const Profile: React.FC = () => {
       </VStack>
 
       <Stack direction={["column", "row"]} spacing="24px">
-        <Box
-          maxW="900px"
-          maxH="400px"
-          border="2px"
-          borderColor="gray.200"
-          borderRadius={10}
-          mb={20}
-          mt={10}
-          padding={3}
+
+        <VStack
+          spacing={4}
+          align='stretch'
         >
-          <Heading mt={2} mb={4}>
-            About Mickael
-          </Heading>
-          <Text fontSize="md">
-            Michael Phelps is a legendary American swimmer widely regarded as
-            one of the greatest athletes in Olympic history. Born on June 30,
-            1985, in Baltimore, Maryland, he quickly rose to prominence as a
-            swimming prodigy from a young age. His unparalleled dedication to
-            the sport, combined with his exceptional talent and work ethic, set
-            the stage for an extraordinary career that has left an indelible
-            mark on the world of swimming. Phelps made his Olympic debut at the
-            age of 15 during the 2000 Sydney Olympics, where he showed glimpses
-            of his immense potential. However, it was in the 2004 Athens
-            Olympics that he truly emerged as a force to be reckoned with,
-            securing six gold medals and two bronze medals, a remarkable
-            achievement for any athlete.
-          </Text>
-          <Button mt={4} bgColor={"#FF4E4E"}>
+          <Box
+            maxW="900px"
+            maxH="400px"
+            width="800px"
+            border="2px"
+            borderColor="gray.200"
+            borderRadius={10}
+            mb={5}
+            mt={10}
+            padding={3}
+          >
+
+
+            <Heading mt={2} mb={4}>
+              About Mickael
+            </Heading>
+            <Text fontSize="md">
+              Michael Phelps is a legendary American swimmer widely regarded as
+              one of the greatest athletes in Olympic history. Born on June 30,
+              1985, in Baltimore, Maryland, he quickly rose to prominence as a
+              swimming prodigy from a young age. His unparalleled dedication to
+              the sport, combined with his exceptional talent and work ethic, set
+              the stage for an extraordinary career that has left an indelible
+              mark on the world of swimming. Phelps made his Olympic debut at the
+              age of 15 during the 2000 Sydney Olympics, where he showed glimpses
+              of his immense potential. However, it was in the 2004 Athens
+              Olympics that he truly emerged as a force to be reckoned with,
+              securing six gold medals and two bronze medals, a remarkable
+              achievement for any athlete.
+            </Text>
+            {/* <Button mt={4} bgColor={"#FF4E4E"}>
             Prove my credentials
-          </Button>
+          </Button> */}
 
-          <Nfts />
+            <Nfts />
 
-          <SismoConnectButton
-            config={config}
-            auths={auths}
-            claims={claims}
-            signature={signature}
-            // retrieve the Sismo Connect Reponse from the user's Sismo data vault
-            onResponse={async (sismoConnectResponse: SismoConnectResponse) => {
-              // console.log("sismoConnectResponse");
-              // console.log(sismoConnectResponse);
+          </Box>
+          <Box
+            maxW="900px"
+            maxH="400px"
+            border="2px"
+            borderColor="gray.200"
+            borderRadius={10}
+            mb={5}
+            mt={5}
+            padding={3}>
+            <Heading mt={2} mb={4}>
+              15K Sponsorship
+            </Heading>
+            <Text fontSize="md">
+            As an accomplished athlete with an impressive track record of 15 international championships, you've garnered attention from a reputable sponsors. 
+            Your exceptional performances have left us in awe, leading to an enticing offer of a $15,000 sponsorship. With this newfound backing, 
+            your aspirations of reaching the pinnacle of your sport are closer to becoming a reality. Your journey 
+            inspires others to persevere relentlessly in pursuit of their athletic dreams.
+            </Text>
+            <Center>
+              <SismoConnectButton
+                overrideStyle={{ backgroundColor: "#FF4E4E", marginTop: "20px" }}
+                text="Apply for 15K Sponsorship"
+                config={config}
+                auths={auths}
+                claims={claims}
+                signature={signature}
+                // retrieve the Sismo Connect Reponse from the user's Sismo data vault
+                onResponse={async (sismoConnectResponse: SismoConnectResponse) => {
+                  if (
+                    getProofDataForClaimValidation(
+                      sismoConnectResponse,
+                      ClaimType.GTE,
+                      "0x3b05aba1e21883085b592f66e7085eb6",
+                      20
+                    )!
+                  ) {
+                    console.log("Claim validated");
+                  } else {
+                    console.log("Claim not validated");
+                  }
+                }}
+                // reponse in bytes to call a contract
+                onResponseBytes={async (response: string) => {
+                }}
+              />
 
-              if (
-                getProofDataForClaimValidation(
-                  sismoConnectResponse,
-                  ClaimType.GTE,
-                  "0x3b05aba1e21883085b592f66e7085eb6",
-                  20
-                )!
-              ) {
-                console.log("Claim validated");
-              } else {
-                console.log("Claim not validated");
-              }
-            }}
-            // reponse in bytes to call a contract
-            onResponseBytes={async (response: string) => {
-              // console.log("response bytes");
-              // console.log(response);
-            }}
-          />
-        </Box>
+            </Center>
+
+          </Box>
+
+          <Box
+            maxW="900px"
+            maxH="400px"
+            border="2px"
+            borderColor="gray.200"
+            borderRadius={10}
+            mb={5}
+            mt={5}
+            padding={3}>
+            <Heading mt={2} mb={4}>
+              5K Sponsorship
+            </Heading>
+            <Text fontSize="md">
+            With five international championships under your belt, you've proven yourself as a dedicated and talented athlete. Your remarkable skills have 
+            caught the attention of a supportive sponsor who recognizes your potential. They are delighted to offer you a $5,000 sponsorship to assist you on 
+            your athletic journey. This sponsorship brings you one step closer to achieving your dreams, serving as a motivation for others to pursue excellence in sports.  
+            </Text>
+
+            <Center>
+              <SismoConnectButton
+                overrideStyle={{ backgroundColor: "#FF4E4E", marginTop: "20px" }}
+                text="Apply for 10k Sponsorship"
+                config={config}
+                auths={auths}
+                claims={claims}
+                signature={signature}
+                // retrieve the Sismo Connect Reponse from the user's Sismo data vault
+                onResponse={async (sismoConnectResponse: SismoConnectResponse) => {
+                  if (
+                    getProofDataForClaimValidation(
+                      sismoConnectResponse,
+                      ClaimType.GTE,
+                      "0x3b05aba1e21883085b592f66e7085eb6",
+                      15
+                    )!
+                  ) {
+                    console.log("Claim validated");
+                  } else {
+                    console.log("Claim not validated");
+                  }
+                }}
+                // reponse in bytes to call a contract
+                onResponseBytes={async (response: string) => {
+                }}
+              />
+
+            </Center>
+
+          </Box>
+
+          <Box
+            maxW="900px"
+            maxH="400px"
+            border="2px"
+            borderColor="gray.200"
+            borderRadius={10}
+            mb={5}
+            mt={5}
+            padding={3}>
+            <Heading mt={2} mb={4}>
+              1K Sponsorship
+            </Heading>
+            <Text fontSize="md">
+            As a promising athlete with a notable achievement of one international championship, you've showcased your determination and potential. Impressed by your talent, a generous sponsor has come forward with a $1,000 sponsorship offer. Though modest, this sponsorship provides valuable support as you continue to strive for greatness. Your journey inspires fellow athletes to work hard and chase their own dreams on the path to success.
+            </Text>
+            <Center>
+              <SismoConnectButton
+                overrideStyle={{ backgroundColor: "#FF4E4E", marginTop: "20px" }}
+                text="Apply for 5k Sponsorship"
+                config={config}
+                auths={auths}
+                claims={claims}
+                signature={signature}
+                // retrieve the Sismo Connect Reponse from the user's Sismo data vault
+                onResponse={async (sismoConnectResponse: SismoConnectResponse) => {
+                  if (
+                    getProofDataForClaimValidation(
+                      sismoConnectResponse,
+                      ClaimType.GTE,
+                      "0x3b05aba1e21883085b592f66e7085eb6",
+                      5 
+                    )!
+                  ) {
+                    console.log("Claim validated");
+                  } else {
+                    console.log("Claim not validated");
+                  }
+                }}
+                // reponse in bytes to call a contract
+                onResponseBytes={async (response: string) => {
+                }}
+              />
+
+            </Center>
+          </Box>
+
+
+        </VStack>
+
+
 
         <Box
           maxW="900px"
@@ -301,7 +432,6 @@ export const Profile: React.FC = () => {
           borderRadius={10}
           mb={20}
           mt={10}
-          ml={40}
           padding={3}
         >
           <Heading mt={2} mb={4}>
