@@ -35,7 +35,9 @@ Deliverables:
  
 
 #### Deployments:
-- **AttestationResolver:** 
+- **AttestationSchema:** https://sepolia.easscan.org/schema/view/0x0f84c6516aaad2f70568705d6294ad8c713bdb21816e5bc57bae9541ce19aebb
+- **AttestationResolver:** https://sepolia.etherscan.io/address/0xc9F20B56a8D76CbF1C1B39691C7F5855fde01E68
+- **ProofOfAchievement:** 
 
 #### Other Characteristics: 
  - Monorepo
