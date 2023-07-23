@@ -16,8 +16,8 @@ In order to have a more strategic business plan we are going to also create scho
 
 
 Deliverables:
-(Figma Design)[https://www.figma.com/file/QAvEbBbUgPoibLXBJ7gVG7/Untitled?type=design&node-id=1-2&mode=design&t=yuADCHwoypu7sprr-0]
-(Workshop Presentation Slides)[https://www.canva.com/design/DAFpXjHjCAk/ShucBjks85CoavsYM0FtJA/edit?utm_content=DAFpXjHjCAk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton]
+[Figma Design](https://www.figma.com/file/QAvEbBbUgPoibLXBJ7gVG7/Untitled?type=design&node-id=1-2&mode=design&t=yuADCHwoypu7sprr-0)
+[Workshop Presentation Slides](https://www.canva.com/design/DAFpXjHjCAk/ShucBjks85CoavsYM0FtJA/edit?utm_content=DAFpXjHjCAk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## 🤖 Tech Stack and Chain Info:
 
@@ -37,7 +37,8 @@ Deliverables:
 #### Deployments:
 - **AttestationSchema:** https://sepolia.easscan.org/schema/view/0x0f84c6516aaad2f70568705d6294ad8c713bdb21816e5bc57bae9541ce19aebb
 - **AttestationResolver:** https://sepolia.etherscan.io/address/0xc9F20B56a8D76CbF1C1B39691C7F5855fde01E68
-- **ProofOfAchievement:** 
+- **ProofOfAchievement:** https://mumbai.polygonscan.com/tx/0xe7d2672595d980d419a11f2fa20e1248204c020730b570eedf6ca55b2f91ff77
+- **SponsorMe:** https://mumbai.polygonscan.com/address/0x209d76E32518d9C09A3f96e8B8B1de6a9E795279
 
 #### Other Characteristics: 
  - Monorepo
