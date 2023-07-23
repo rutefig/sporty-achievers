@@ -15,6 +15,7 @@ import { IPaymaster, BiconomyPaymaster } from "@biconomy/paymaster";
 import { Outlet } from "react-router-dom";
 import { Button } from "@chakra-ui/button";
 import { Spinner } from "@chakra-ui/spinner";
+import Transak from "@biconomy/transak";
 
 const bundler: IBundler = new Bundler({
   bundlerUrl: "https://bundler.biconomy.io/api/v2/80001/abc", // you can get this value from biconomy dashboard.
@@ -108,6 +109,10 @@ export function Layout() {
     }
   }
 
+  const callPayment = async () => {
+    transak.init();
+  }
+
   const logout = async () => {
     if (!sdkRef.current) {
       console.error("Web3Modal not initialized.");
@@ -119,6 +124,11 @@ export function Layout() {
     enableInterval(false);
   };
 
+    // use this info for transak package
+  const transak = new Transak('STAGING', {
+    walletAddress: "0xa1e89b3e483ceec616ab6fb9684e7193518ec124",
+  });
+
   return (
     <div>
       {/* <h1>
@@ -126,6 +136,7 @@ export function Layout() {
         Biconomy Smart Accounts using social login + Gasless Transactions
       </h1> */}
       {!smartAccount && !loading && (
+        <>
         <Button
           colorScheme="teal"
           position={"absolute"}
@@ -137,6 +148,7 @@ export function Layout() {
         >
           Login
         </Button>
+        </>
       )}
       {loading && <Spinner>loading</Spinner>}
       {!!smartAccount && (
@@ -145,6 +157,15 @@ export function Layout() {
           <p>{smartAccount.address}</p> */}
           {/* <Counter smartAccount={smartAccount} provider={provider} /> */}
           {/* <Button onClick={logout}>Logout</Button> */}
+          <Button 
+          colorScheme="teal"
+          position={"absolute"}
+          top={12}
+          right={250}
+          onClick={ callPayment }
+          mr={40}>
+          Fund Wallet
+          </Button>
           <Button
           colorScheme="teal"
           position={"absolute"}
@@ -153,9 +174,9 @@ export function Layout() {
           onClick={logout}
           mr={40}
           mt={10}
-        >
-         {smartAccount.address.substring(0,4)}...{smartAccount.address.slice(-4)} Logout
-        </Button>          
+          >
+         { "(" + smartAccount.address.substring(0,4)}...{smartAccount.address.slice(-4) + ")" }  Logout
+        </Button>
         </div>
       )}
       <Outlet />

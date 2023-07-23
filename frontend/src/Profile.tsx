@@ -39,19 +39,7 @@ import {
 } from "@sismo-core/sismo-connect-react";
 import { useDisclosure } from "@chakra-ui/react-use-disclosure";
 import { Nfts } from "./Nfts";
-
-// import {
-//   // SismoConnect,
-//   // SismoConnectVerifiedResult,
-//   // SignatureRequest,
-//   // AuthRequest,
-//   // ClaimRequest,
-// } from "@sismo-core/sismo-connect-server";
-
-// interface ProfileProps {
-//   name: string;
-//   imageUrl: string;
-// }
+import Transak from "@biconomy/transak";
 
 export const Profile: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -365,7 +353,6 @@ export const Profile: React.FC = () => {
               />
 
             </Center>
-
           </Box>
 
           <Box

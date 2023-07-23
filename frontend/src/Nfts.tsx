@@ -51,19 +51,21 @@ init("ef3d1cdeafb642d3a8d6a44664ce566c");
   }
 
   console.log(data);
-  return (
-    <VStack spacing={4}>
-    {data.TokenNfts.TokenNft.map((nft, index) => (
-      <Box key={index} borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}>
-        <Image src={"https://ipfs.io/ipfs/" + nft.metaData.image.replace("ipfs://","")} alt={nft.name} boxSize="200px" objectFit="cover" />
-        <HStack mt={2}>
-          <Text fontWeight="bold">{nft.blockchain}</Text>
-          <Text fontSize="sm" color="gray.500">{"..."+nft.address.slice(-6)}</Text>
-        </HStack>
-      </Box>
-    ))}
-  </VStack>
-  )  
+  if (data) {
+    return (
+      <VStack spacing={4}>
+      {data.TokenNfts.TokenNft.map((nft, index) => (
+        <Box key={index} borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}>
+          <Image src={"https://ipfs.io/ipfs/" + nft.metaData.image.replace("ipfs://","")} alt={nft.name} boxSize="200px" objectFit="cover" />
+          <HStack mt={2}>
+            <Text fontWeight="bold">{nft.blockchain}</Text>
+            <Text fontSize="sm" color="gray.500">{"..."+nft.address.slice(-6)}</Text>
+          </HStack>
+        </Box>
+      ))}
+    </VStack>
+    )    
+  }
 
   // Render your component using the data returned by the query
 };
