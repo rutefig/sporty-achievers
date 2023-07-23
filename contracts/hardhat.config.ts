@@ -15,6 +15,14 @@ const config: HardhatUserConfig = {
       url: `https://polygon-mumbai.g.alchemy.com/v2/${ALCHEMY_API_KEY_MUMBAI}`,
       accounts: [PRIVATE_KEY!],
     },
+    linea: {
+      url: `https://linea-goerli.infura.io/v3/8fc45489f2bb4e2984c10e2b0c238c95`,
+      accounts: [PRIVATE_KEY!],
+    },
+    "mantle-testnet": {
+      url: "https://rpc.testnet.mantle.xyz/",
+      accounts: [PRIVATE_KEY!],
+    }
   },
 
   etherscan: {
