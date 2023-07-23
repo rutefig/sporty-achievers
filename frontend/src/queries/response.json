@@ -1,0 +1,18 @@
+{
+  "data": {
+    "TokenNfts": {
+      "TokenNft": [
+        {
+          "address": "0xbd640fa009dda9eb3bc7348d8ea1be47f0cb14ab",
+          "blockchain": "polygon",
+          "tokenId": "0",
+          "chainId": "137",
+          "metaData": {
+            "image": "ipfs://QmSpSXwqciM8FVoUS1Z5NUwiQYp6RQJrr8SS6YRoG3b5E5/0.png",
+            "imageData": ""
+          }
+        }
+      ]
+    }
+  }
+}
