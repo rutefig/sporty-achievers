@@ -9,9 +9,9 @@ What we learned:
 * Create, compile & deploy  smart contracts to EVM-compatible chain incl. polygon Mumbai, Celo, Sepolia, Linea, using Hardhat.
 * Using Hyperlane for bridging  
 * Create, compile, and deploy a Subgraph to The Graph's Hosted Service.
-* Build a Subgraph that indexes data from a smart contract to query blockchain data to the dapp.
-* Learn to use Biconomy: Social account / Account abstraction for login and authentication 
-* Learn to use Push Protocol to send notifications once a payment is made
+* Fetch NFTs data with Airstack 
+* Learn to use Biconomy: Social account / Account abstraction for login and authentication
+* Use EAS for proving off-chain attestations
 
 
 Deliverables: 
