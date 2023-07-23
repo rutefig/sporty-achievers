@@ -1,57 +1,41 @@
 # Sporty Achievers👋 
 ### Full Stack Blockchain Development ✨
-<p> ETH Global Paris Hackathon submission</p>
-<p>A platform for athletes to gain more visibility globally and acquire scholarships easily 
-with off-chain credential verification (Proof of Achievement) and fully decentralized payment</p>
+<p>ETH Global Paris Hackathon submission</p>
+<p>This project focus on solving the issues athletes have this moment to get financial support, visibility, credibility and sponsorships based on their value. 
+We are implementing a solution that ties the real value and performance of an athlete to their profile, creating a Proof of Achievement that is going to represent each medal, trophy or personal record. With this solution athletes don't have to carry their physical medals or trophies to show to other people what they achieved so far.
+In order to have a more strategic business plan we are going to also create scholarships for sports applications and then match the athletes with brands that are willing to team up with them.</p>
 
 
-What we learned:
+**What we learned:**
 * Create, compile & deploy  smart contracts to EVM-compatible chain incl. polygon Mumbai, Celo, Sepolia, Linea, using Hardhat.
-* Using Hyperlane for bridging  
-* Create, compile, and deploy a Subgraph to The Graph's Hosted Service.
+* Use EAS (Ethereum Attestation Service) for proving off-chain and on-chain attestations
+* Using Hyperlane for creating chain agnostic tokens
 * Fetch NFTs data with Airstack 
-* Learn to use Biconomy: Social account / Account abstraction for login and authentication
-* Use EAS for proving off-chain attestations
+* Learn how to use Biconomy: Social account / Account abstraction for login and authentication, Gasless Payments
 
 
-Deliverables: 
 
-[Workshop Presentation Slides]https://www.canva.com/design/DAFpXjHjCAk/ShucBjks85CoavsYM0FtJA/edit?utm_content=DAFpXjHjCAk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+Deliverables:
+(Figma Design)[https://www.figma.com/file/QAvEbBbUgPoibLXBJ7gVG7/Untitled?type=design&node-id=1-2&mode=design&t=yuADCHwoypu7sprr-0]
+(Workshop Presentation Slides)[https://www.canva.com/design/DAFpXjHjCAk/ShucBjks85CoavsYM0FtJA/edit?utm_content=DAFpXjHjCAk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton]
 
-# 🤖 Tech Stack and Chain Info:
+## 🤖 Tech Stack and Chain Info:
 
 #### Tech Stack: 
- - Next.js / Typescript
- - Celo
- - Sepolia
  - Solidity
- - Chakra UI
- - Hyperlane
- - Biconomy 
- - Sismo 
- - The Graph
  - Hardhat
  - Ethers.js
- - Push Protocol 
-
-
-#### Chain: 
+ - EAS (Ethereum Attestation Service)
+ - Hyperlane
+ - Sepolia
+ - Next.js / Typescript
+ - Chakra UI
+ - Biconomy
+ - Sismo
  
-Polygon Mumbai Contract Address: 
-SponsorMe contract -
-0x209d76E32518d9C09A3f96e8B8B1de6a9E795279
 
-
-Celo Contract Address:
-
-
-Sepolia Testnet Address:
-
-
-Linea Testnet Address:
-
-
-Mantle Testnet Address:
+#### Deployments:
+- **AttestationResolver:** 
 
 #### Other Characteristics: 
  - Monorepo
