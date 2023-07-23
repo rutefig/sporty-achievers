@@ -15,6 +15,14 @@ import {
   SliderThumb,
   Button,
   Text,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Input,
 } from "@chakra-ui/react";
 
 import {
@@ -27,6 +35,7 @@ import {
   AuthRequest,
   ClaimRequest,
 } from "@sismo-core/sismo-connect-react";
+import { useDisclosure } from "@chakra-ui/react-use-disclosure";
 
 // import {
 //   // SismoConnect,
@@ -42,6 +51,7 @@ import {
 // }
 
 export const Profile: React.FC = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const config: SismoConnectConfig = {
     appId: "0x947b522c8586b0d1700c33e3665eee6e",
     vault: {
@@ -309,13 +319,34 @@ export const Profile: React.FC = () => {
             </SliderTrack>
             <SliderThumb />
           </Slider>
-          <Button mt={4} bgColor={"#FF4E4E"}>
+          <Button mt={4} bgColor={"#FF4E4E"} onClick={onOpen}>
             Become a Supporter
           </Button>
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Support your favorite athlete</ModalHeader>
+              <ModalBody>
+                <Input placeholder="Username(optional)" mb={3}></Input>
+                <Input placeholder="Amount" mb={3}></Input>
+                <Input placeholder="Note (optional)"></Input>
+              </ModalBody>
+              <ModalCloseButton />
+              <ModalFooter>
+                <Button colorScheme="teal" mr={3} onClick={onClose}>
+                  Send 💰
+                </Button>
+                <Button variant="ghost" onClick={onClose}>
+                  Cancel
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
         </Box>
       </Stack>
       <VStack spacing={4} align="stretch">
         <Box
+          padding={3}
           width="800px"
           height="400px"
           border="2px"
@@ -327,6 +358,7 @@ export const Profile: React.FC = () => {
           {/* Content of the first box */}
         </Box>
         <Box
+          padding={3}
           width="800px"
           height="400px"
           border="2px"
@@ -336,6 +368,7 @@ export const Profile: React.FC = () => {
         >
           {/* Content of the second box */}
           <Heading size={"lg"}>Medals</Heading>
+          <h4>Achievements 🥇</h4>
         </Box>
       </VStack>
     </>

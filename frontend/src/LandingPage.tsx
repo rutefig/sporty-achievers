@@ -143,7 +143,6 @@ export const LandingPage: React.FC = () => {
             </Button>
             <Link to="/profile">Profile</Link>
             <Modal isOpen={isOpen} onClose={onClose}>
-              §
               <ModalOverlay />
               <ModalContent>
                 <ModalHeader>Create Profile</ModalHeader>
