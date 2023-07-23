@@ -27,6 +27,7 @@ import {
   AuthRequest,
   ClaimRequest,
 } from "@sismo-core/sismo-connect-react";
+import { Nfts } from "./Nfts";
 
 // import {
 //   // SismoConnect,
@@ -248,6 +249,8 @@ export const Profile: React.FC = () => {
           <Button mt={4} bgColor={"#FF4E4E"}>
             Prove my credentials
           </Button>
+
+          <Nfts />
 
           <SismoConnectButton
             config={config}
