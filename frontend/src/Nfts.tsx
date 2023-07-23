@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { Box, Image, Text, VStack, HStack } from '@chakra-ui/react';
 import { init, useQuery } from "@airstack/airstack-react";
 
 init("ef3d1cdeafb642d3a8d6a44664ce566c");
@@ -6,6 +7,19 @@ init("ef3d1cdeafb642d3a8d6a44664ce566c");
 //export const Nfts: React.FC = () => {
  export const Nfts = () => {
 
+  const nfts = [
+    {
+      name: 'NFT 1',
+      imageUrl: 'http://ruta/a/imagen.jpg',
+      address: '0x123...',
+    },
+    {
+      name: 'NFT 2',
+      imageUrl: 'http://ruta/a/imagen2.jpg',
+      address: '0x456...',
+    },
+    // Agregar más NFT aquí...
+  ];
 
     const NftQuery = `{
         TokenNfts(
@@ -34,6 +48,22 @@ init("ef3d1cdeafb642d3a8d6a44664ce566c");
 
   if (error) {
     return <p>Error: {error.message}</p>;
+  }
+
+  if (data) {
+    return (
+      <VStack spacing={4}>
+      {data.TokenNfts.TokenNft.map((nft, index) => (
+        <Box key={index} borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}>
+          <Image src={"https://ipfs.io/ipfs/" + nft.metaData.image.replace("ipfs://","")} alt={nft.name} boxSize="200px" objectFit="cover" />
+          <HStack mt={2}>
+            <Text fontWeight="bold">{nft.blockchain}</Text>
+            <Text fontSize="sm" color="gray.500">{"..."+nft.address.slice(-6)}</Text>
+          </HStack>
+        </Box>
+      ))}
+    </VStack>
+    )  
   }
 
   console.log(data);
